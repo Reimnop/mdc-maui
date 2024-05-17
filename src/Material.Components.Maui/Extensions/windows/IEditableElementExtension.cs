@@ -12,6 +12,9 @@ internal static class IEditableElementExtension
     {
         maxWidth -= (float)element.EditablePadding.HorizontalThickness;
 
+        if (maxWidth < 0)
+            maxWidth = 0;
+            
         var layout = element.CreateCanvasTextLayout(maxWidth);
         var size = new SizeF((float)layout.LayoutBounds.Width, (float)layout.LayoutBounds.Height);
 
