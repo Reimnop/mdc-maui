@@ -155,7 +155,8 @@ internal static class CanvasExtension
         VerticalAlignment vertical = VerticalAlignment.Center
     ) where TElement : ITextElement, IFontElement
     {
-        canvas.DrawText(element, element.Text, rect, horizontal, vertical);
+        if (rect.Width > 0 && rect.Height > 0)
+            canvas.DrawText(element, element.Text, rect, horizontal, vertical);
     }
 
     internal static void DrawText<TElement>(
@@ -167,15 +168,16 @@ internal static class CanvasExtension
         VerticalAlignment vertical = VerticalAlignment.Center
     ) where TElement : IFontElement
     {
-        canvas.DrawText(
-            element,
-            text,
-            element.FontColor,
-            element.FontSize,
-            rect,
-            horizontal,
-            vertical
-        );
+        if (rect.Width > 0 && rect.Height > 0)
+            canvas.DrawText(
+                element,
+                text,
+                element.FontColor,
+                element.FontSize,
+                rect,
+                horizontal,
+                vertical
+            );
     }
 
     internal static void DrawText<TElement>(
@@ -189,16 +191,19 @@ internal static class CanvasExtension
         VerticalAlignment vertical = VerticalAlignment.Center
     ) where TElement : IFontElement
     {
-        var weight = (int)element.FontWeight;
-        var style = element.FontIsItalic ? FontStyleType.Italic : FontStyleType.Normal;
-
-        var font = new Microsoft.Maui.Graphics.Font(element.FontFamily, weight, style);
-
-        canvas.Font = font;
-        canvas.FontColor = fontColor.WithAlpha(
-            element.ViewState is ViewState.Disabled ? 0.38f : 1f
-        );
-        canvas.FontSize = fontSize;
-        canvas.DrawString(text, rect, horizontal, vertical);
+        if (rect.Width > 0 && rect.Height > 0)
+        {
+            var weight = (int)element.FontWeight;
+            var style = element.FontIsItalic ? FontStyleType.Italic : FontStyleType.Normal;
+    
+            var font = new Microsoft.Maui.Graphics.Font(element.FontFamily, weight, style);
+    
+            canvas.Font = font;
+            canvas.FontColor = fontColor.WithAlpha(
+                element.ViewState is ViewState.Disabled ? 0.38f : 1f
+            );
+            canvas.FontSize = fontSize;
+            canvas.DrawString(text, rect, horizontal, vertical);
+        }
     }
 }
