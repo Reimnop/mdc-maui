@@ -33,13 +33,6 @@ internal class ContentPresenter : Microsoft.Maui.Controls.ContentPresenter, IVis
         }
     }
 
-    protected override void OnBindingContextChanged()
-    {
-        base.OnBindingContextChanged();
-
-        SetInheritedBindingContext(base.Content, this.BindingContext);
-    }
-
     public IReadOnlyList<IVisualTreeElement> GetVisualChildren() =>
         this.Content != null
             ? new List<IVisualTreeElement> { this.Content }

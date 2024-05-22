@@ -195,7 +195,7 @@ internal class TextFieldDrawable(TextField view) : IDrawable
         drawRect.AppendCircle(rect.Right - 24f, rect.Center.Y, 20f);
         canvas.ClipPath(drawRect);
 
-        if (view.RipplePercent is not 0f and not 1f)
+        if (view.RipplePercent is not 0f)
             canvas.DrawRipple(
                 view,
                 view.LastTouchPoint,

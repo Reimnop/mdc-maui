@@ -23,16 +23,17 @@ internal class ChipDrawable(Chip view) : IDrawable, IDisposable
             18f * scale,
             18f * scale
         );
+        
+        canvas.DrawStateLayer(view, rect, view.ViewState);
 
-        if (view.RipplePercent is 0f or 1f)
-            canvas.DrawStateLayer(view, rect, view.ViewState);
-        else
+        if (view.RipplePercent is not 0f)
             canvas.DrawRipple(
                 view,
                 view.LastTouchPoint,
                 view.RippleSize,
                 view.RipplePercent
             );
+            
 
         canvas.DrawIcon(
             view,

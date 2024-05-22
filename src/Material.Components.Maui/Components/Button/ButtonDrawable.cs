@@ -15,16 +15,17 @@ internal class ButtonDrawable(Button view) : IDrawable
         canvas.DrawBackground(this.view, rect);
         canvas.DrawOutline(this.view, rect);
         canvas.DrawOverlayLayer(this.view, rect);
+        
+        canvas.DrawStateLayer(this.view, rect, this.view.ViewState);
 
-        if (this.view.RipplePercent is 0f or 1f)
-            canvas.DrawStateLayer(this.view, rect, this.view.ViewState);
-        else
+        if (this.view.RipplePercent is not 0f)
             canvas.DrawRipple(
                 this.view,
                 this.view.LastTouchPoint,
                 this.view.RippleSize,
                 this.view.RipplePercent
             );
+            
 
         var scale = rect.Height / 40f;
         canvas.DrawIcon(

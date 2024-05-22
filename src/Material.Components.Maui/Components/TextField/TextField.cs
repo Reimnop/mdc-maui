@@ -324,8 +324,8 @@ public class TextField
             && x <= this.Bounds.Width - 8f
             && y >= this.Bounds.Height / 2 - 20f
             && y <= this.Bounds.Height / 2 + 20f
-        )
-            TrailingIconClicked?.Invoke(this, e);
+        ) 
+            this.TrailingIconClicked?.Invoke(this, e);
     }
 
     private void OnEditorStartInteraction(object sender, TouchEventArgs e)

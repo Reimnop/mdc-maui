@@ -40,10 +40,14 @@ internal class NavigationBarItemDrawable(NavigationBarItem view) : IDrawable
             canvas.FillRectangle(rect);
         }
 
-        if (view.RipplePercent is 0f or 1f)
-            canvas.DrawStateLayer(view, bounds, view.ViewState);
-        else
-            canvas.DrawRipple(view, view.rippleStartPoint, view.RippleSize, view.RipplePercent);
+        canvas.DrawStateLayer(view, rect, view.ViewState);
+        if (view.RipplePercent is not 0f)
+            canvas.DrawRipple(
+                view,
+                view.LastTouchPoint,
+                view.RippleSize,
+                view.RipplePercent
+            );
 
         canvas.ResetState();
     }

@@ -10,16 +10,16 @@ internal class ExtendedFABDrawable(ExtendedFAB view) : IDrawable
 
         canvas.DrawBackground(view, rect);
         canvas.DrawOverlayLayer(view, rect);
-
-        if (view.RipplePercent is 0f or 1f)
-            canvas.DrawStateLayer(view, rect, view.ViewState);
-        else
+        
+        canvas.DrawStateLayer(view, rect, view.ViewState);
+        if (view.RipplePercent is not 0f)
             canvas.DrawRipple(
                 view,
                 view.LastTouchPoint,
                 view.RippleSize,
                 view.RipplePercent
             );
+            
 
         var scale = rect.Height / 56f;
         canvas.DrawIcon(

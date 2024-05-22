@@ -29,10 +29,10 @@ internal class CheckBoxDrawable(CheckBox view) : IDrawable
         var drawRect = new PathF();
         drawRect.AppendCircle(rect.Center.X, rect.Center.Y, Math.Max(rect.Width, rect.Height) / 2f);
         canvas.ClipPath(drawRect);
+        
+        canvas.DrawStateLayer(view, rect, view.ViewState);
 
-        if (view.RipplePercent is 0f or 1f)
-            canvas.DrawStateLayer(view, rect, view.ViewState);
-        else
+        if (view.RipplePercent is not 0f)
             canvas.DrawRipple(
                 view,
                 view.LastTouchPoint,

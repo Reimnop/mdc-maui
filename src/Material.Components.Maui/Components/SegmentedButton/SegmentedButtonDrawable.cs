@@ -56,16 +56,17 @@ internal class SegmentedButtonDrawable(SegmentedButton view) : IDrawable, IDispo
         if (
             rect.Contains(view.LastTouchPoint)
             && item.ViewState is ViewState.Hovered or ViewState.Pressed
-            && view.RipplePercent is not 0f or 1f
         )
-            canvas.DrawRipple(
-                view,
-                view.LastTouchPoint,
-                view.RippleSize / 3,
-                view.RipplePercent
-            );
-        else
-            canvas.DrawStateLayer(item, rect, item.ViewState);
+        {
+            canvas.DrawStateLayer(view, rect, view.ViewState);
+            if (view.RipplePercent is not 0f)
+                canvas.DrawRipple(
+                    view,
+                    view.LastTouchPoint,
+                    view.RippleSize,
+                    view.RipplePercent
+                );
+        }
 
         var scale = rect.Height / 40f;
         var textSize = view.GetStringSize(item.Text);

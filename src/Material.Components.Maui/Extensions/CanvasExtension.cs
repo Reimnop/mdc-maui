@@ -143,7 +143,7 @@ internal static class CanvasExtension
         float percent
     )
     {
-        canvas.FillColor = element.StateLayerColor.WithAlpha(StateLayerOpacity.Pressed);
+        canvas.FillColor = element.StateLayerColor.WithAlpha(StateLayerOpacity.Pressed.Lerp(0f, percent * percent * percent * percent * percent));
         canvas.FillCircle(point, 0f.Lerp(size, percent));
     }
 
