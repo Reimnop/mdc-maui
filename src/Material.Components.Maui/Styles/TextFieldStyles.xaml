@@ -5,9 +5,8 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:converters="clr-namespace:Material.Components.Maui.Converters"
     xmlns:views="clr-namespace:Material.Components.Maui">
-
-    <!--  x:Key="FilledTextFieldStyle"  -->
-    <Style TargetType="views:TextField">
+    
+    <Style TargetType="views:TextField" x:Key="FilledTextFieldStyle">
         <Setter Property="HorizontalOptions" Value="Center" />
         <Setter Property="VerticalOptions" Value="Center" />
         <Setter Property="Shape" Value="ExtraSmallTop" />
